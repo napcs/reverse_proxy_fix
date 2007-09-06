@@ -1,4 +1,4 @@
-#=REVERSE PROXY PLUGIN v1.02.1 (May 11, 2007)
+#=REVERSE PROXY PLUGIN v1.03.1 (September 6th, 2007)
 #===© 2006-2007 Brian Hogan
 # 
 #==Introduction
@@ -37,15 +37,23 @@
 #
 #== Revisions
 #
+# * Version 1.0.3.1
+# ** Fixed an issue when using RESTful routing - plugin should no longer activate in dev mode.
+#
 # * Version 1.0.3
 # ** Added a rake task to configure the plugin
-# ** Modified the install script - stopped working with newer builds of Rails apparently.
+# ** fixed a situation where the installer didn't work in Rails 1.2.3
+# ** fixed a problem with request.request_uri not setting the base path.
+# ** Overloaded routing mechanism to avoid collisions with the modified request.request_uri
+# ** Tested with acts_as_authenticated
+#
 # * Version 1.0.2
 # ** Fixed issue where page caching does not work. The URL rewriting can now be turned off by sending *:skip_relative_url_root => true* to any calls to url_for or link_to. (This is the method that caching uses to build the cached urls)
 # * Version 1.0.1
-  ** Small bug fix to allow :only_path => false to work correctly when called on link_to and url_for
-  * Version 1.0
-  ** Initial Release
+# ** Small bug fix to allow :only_path => false to work correctly when called on link_to and url_for
+# * Version 1.0
+# ** Initial Release
+#
 #==License
 # Copyright © 2006-2007 Brian Hogan
 # 

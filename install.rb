@@ -13,13 +13,15 @@ base_url = STDIN.gets
 base_url.chop!
 
 d = Dir.getwd
+
 if !d.include?('/vendor/plugins/reverse_proxy_fix')
   d += '/vendor/plugins/reverse_proxy_fix'
+elsif !d.include?('/vendor/plugins/')
+  
 end
 config_file = d + "/lib/config.rb"
 
 begin
-  puts "Opening file #{config_file} for modifications..."
   File.open(config_file, "w") do |t|
   	t << "BASE_URL=\"#{base_url}\""
   end	
