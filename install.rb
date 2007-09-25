@@ -16,6 +16,7 @@ base_url.chop!
 puts "Please select your Rails version from the list of supported versions:"
 puts " 1 : Rails 1.1.6"
 puts " 2 : Rails 1.2, 1.2.2, and 1.2.3"
+puts " 3 : Rails 2.0 - experimental support"
 version = STDIN.gets.chop!
 
 d = Dir.getwd
@@ -48,6 +49,8 @@ if version == 1
    version = "116"
 elsif version == 2
    version = "123"
+elsif version == 3
+   version = "20"
 else
    version = "123"
 end

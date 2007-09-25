@@ -30,32 +30,46 @@
 # edit the file lib/config.rb and uncomment the BASE_URL line. (It should be the only line in the file. Enter the desired base url 
 # that you would like the plugin to prepend to any generated URLs.
 #
+#==Versions of Rails
+#
+# This plugin supports Rails 1.x, Rails 1.2.x, and Rails 2.0 by using separate files for each Rails version
+# During the installation you'll need to tell the plugin which version to use. If this fails for some reason,
+# simply rename the appropriate file to reverse_proxy_fix.rb
+# * 116.rb  (Rails 1.1.6 or below)
+# * 123.rb  (Rails 1.2, 1.2.2, or 1.2.3)
+# * 20.rb   (Rails 2.0)
+#
 # Then start your application in Production mode.  The plugin is automatically disabled when you run in development mode, so you don't
 # need to do any special configurations to develop your application.
 #
 # That's it!
 #
-#== Revisions
+#= Revisions
 #
-# * Version 1.0.3.2
-# ** Unified installer for all Rails versions again. 
+#== Version 1.0.4.0
+# * Added support for Rails 2.0 - needs more testing
 #
-# * Version 1.0.3.1
-# ** Fixed an issue when using RESTful routing - plugin should no longer activate in dev mode.
+#== Version 1.0.3.2
+# * Unified installer for all Rails versions again. 
 #
-# * Version 1.0.3
-# ** Added a rake task to configure the plugin
-# ** fixed a situation where the installer didn't work in Rails 1.2.3
-# ** fixed a problem with request.request_uri not setting the base path.
-# ** Overloaded routing mechanism to avoid collisions with the modified request.request_uri
-# ** Tested with acts_as_authenticated
+#== Version 1.0.3.1
+# * Fixed an issue when using RESTful routing - plugin should no longer activate in dev mode.
 #
-# * Version 1.0.2
-# ** Fixed issue where page caching does not work. The URL rewriting can now be turned off by sending *:skip_relative_url_root => true* to any calls to url_for or link_to. (This is the method that caching uses to build the cached urls)
-# * Version 1.0.1
-# ** Small bug fix to allow :only_path => false to work correctly when called on link_to and url_for
-# * Version 1.0
-# ** Initial Release
+#== Version 1.0.3
+# * Added a rake task to configure the plugin
+# * fixed a situation where the installer didn't work in Rails 1.2.3
+# * fixed a problem with request.request_uri not setting the base path.
+# * Overloaded routing mechanism to avoid collisions with the modified request.request_uri
+# * Tested with acts_as_authenticated
+#
+#== Version 1.0.2
+# * Fixed issue where page caching does not work. The URL rewriting can now be turned off by sending *:skip_relative_url_root => true* to any calls to url_for or link_to. (This is the method that caching uses to build the cached urls)
+#
+#== Version 1.0.1
+# * Small bug fix to allow :only_path => false to work correctly when called on link_to and url_for
+#
+#== Version 1.0
+# * Initial Release
 #
 #==License
 # Copyright © 2006-2007 Brian Hogan
