@@ -1,4 +1,4 @@
-#=REVERSE PROXY PLUGIN v1.03.1 (September 6th, 2007)
+#=REVERSE PROXY PLUGIN v1.03.2 (September 24th, 2007)
 #===© 2006-2007 Brian Hogan
 # 
 #==Introduction
@@ -36,6 +36,9 @@
 # That's it!
 #
 #== Revisions
+#
+# * Version 1.0.3.2
+# ** Unified installer for all Rails versions again. 
 #
 # * Version 1.0.3.1
 # ** Fixed an issue when using RESTful routing - plugin should no longer activate in dev mode.
