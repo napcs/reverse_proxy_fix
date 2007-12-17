@@ -5,7 +5,7 @@
 require 'FileUtils'
 puts "########################################################"
 puts "# reverse_proxy_fix plugin                             #"
-puts "# Set up the base url of your proxy server             #"
+puts "# Configureation                                       #"
 puts "########################################################"
 puts ""
 puts "Enter the base url you wish to use without the trailing slash (example: http://external.mycompany.com/myapp)"
@@ -15,8 +15,8 @@ base_url.chop!
 
 puts "Please select your Rails version from the list of supported versions:"
 puts " 1 : Rails 1.1.6"
-puts " 2 : Rails 1.2, 1.2.2, and 1.2.3"
-puts " 3 : Rails 2.0 - experimental support"
+puts " 2 : Rails 1.2.X"
+puts " 3 : Rails 2.0"
 version = STDIN.gets.chop!
 
 d = Dir.getwd
