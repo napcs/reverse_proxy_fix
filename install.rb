@@ -17,16 +17,10 @@ puts "Please select your Rails version from the list of supported versions:"
 puts " 1 : Rails 1.1.6"
 puts " 2 : Rails 1.2.X"
 puts " 3 : Rails 2.0"
-version = STDIN.gets.chop!
+version = STDIN.gets.chop!.to_i
 
 d = Dir.getwd
 
-#if !d.include?('/vendor/plugins/reverse_proxy_fix')
-#  d += '/vendor/plugins/reverse_proxy_fix'
-#elsif !d.include?('/vendor/plugins/')
-#  
-#end
-#config_file = d + "/lib/config.rb"
 
 if File.exists?("app")
    d += "/vendor/plugins/reverse_proxy_fix"
@@ -59,8 +53,8 @@ end
 config_file = d + "/lib/#{version}.rb"
 
 begin
-FileUtils.cp "#{d}/lib/#{version}.rb", "#{d}/lib/reverse_proxy_fix.rb"
-puts "Plugin successfully installed and configured"
+  FileUtils.cp "#{d}/lib/#{version}.rb", "#{d}/lib/reverse_proxy_fix.rb"
+  puts "Plugin successfully installed and configured"
 rescue
     puts "I couldn't copy your file.  Remane #{d}/lib/#{version}.rb to #{d}/lib/reverse_proxy_fix.rb"
 end

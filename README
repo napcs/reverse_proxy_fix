@@ -1,4 +1,4 @@
-#=REVERSE PROXY PLUGIN v1.03.2 (September 24th, 2007)
+#=REVERSE PROXY PLUGIN v1.04.1 (December 17th, 2007)
 #===© 2006-2007 Brian Hogan
 # 
 #==Introduction
@@ -36,8 +36,8 @@
 # During the installation you'll need to tell the plugin which version to use. If this fails for some reason,
 # simply rename the appropriate file to reverse_proxy_fix.rb
 # * 116.rb  (Rails 1.1.6 or below)
-# * 123.rb  (Rails 1.2, 1.2.2, or 1.2.3)
-# * 20.rb   (Rails 2.0)
+# * 123.rb  (Rails 1.2.X)
+# * 20.rb   (Rails 2.X)
 #
 # Then start your application in Production mode.  The plugin is automatically disabled when you run in development mode, so you don't
 # need to do any special configurations to develop your application.
@@ -45,6 +45,9 @@
 # That's it!
 #
 #= Revisions
+#
+#== Version 1.0.4.1
+# * Fixed the installer script to properly select Rails version. (Joshua Miller)
 #
 #== Version 1.0.4.0
 # * Added support for Rails 2.0 - needs more testing
