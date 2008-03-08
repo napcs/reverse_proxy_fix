@@ -18,9 +18,11 @@ module ActionController
 		end
 	end
 	
-	# Set the asset host for CSS, JS, and image files if we're in production mode and the base_path has been configured.
 	if check_mode_and_base
+	  # Set the asset host for CSS, JS, and image files if we're in production mode and the base_path has been configured.
 		ActionController::Base.asset_host = BASE_URL
+	  # disable optimizations - we need all URLS to be run through routing for this to work.
+		ActionController::Base::optimise_named_routes = false
 	end
 	
 	
