@@ -1,5 +1,5 @@
-#=REVERSE PROXY PLUGIN v1.04.1 (December 17th, 2007)
-#===© 2006-2007 Brian Hogan
+#=REVERSE PROXY PLUGIN Version 1.0.5.1 (March 25th, 2008)
+#===© 2006-2008 Brian Hogan
 # 
 #==Introduction
 # This plugin is designed to allow your Rails application to reside behind a reverse proxy. 
@@ -51,6 +51,9 @@
 # Second, in order to get named routes working in Rails 2.0 I took the shortcut and disabled route optimization.
 #
 #= Revisions
+#
+#== Version 1.0.5.1
+# * Updated the readme version and fixed the installation script so it worked for platforms other than Windows (Thanks to Brian Candler for catching this and supplying a patch)
 #
 #== Version 1.0.5
 # * Fixed the issue that prevented named routes from not working in Rails 2.0 by disabling named route optimization.

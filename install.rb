@@ -2,7 +2,7 @@
 # Prompts users for the desired source base path
 # and writes the path to the configuration file used
 # by the plugin.
-require 'FileUtils'
+require 'fileutils'
 puts "########################################################"
 puts "# reverse_proxy_fix plugin                             #"
 puts "# Configureation                                       #"
