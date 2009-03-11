@@ -4,7 +4,7 @@
 # by the plugin.
 require 'fileutils'
 puts "########################################################"
-puts "# reverse_proxy_fix plugin                             #"
+puts "# reverse_proxy_fix plugin - v1.0.5.2                             #"
 puts "# Configureation                                       #"
 puts "########################################################"
 puts ""
@@ -16,7 +16,7 @@ base_url.chop!
 puts "Please select your Rails version from the list of supported versions:"
 puts " 1 : Rails 1.1.6"
 puts " 2 : Rails 1.2.X"
-puts " 3 : Rails 2.0"
+puts " 3 : Rails 2.0, 2.1, 2.2"
 version = STDIN.gets.chop!.to_i
 
 d = Dir.getwd

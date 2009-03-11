@@ -1,5 +1,5 @@
 #=REVERSE PROXY PLUGIN Version 1.0.5.1 (March 25th, 2008)
-#===© 2006-2008 Brian Hogan
+#===© 2006-2009 Brian Hogan
 # 
 #==Introduction
 # This plugin is designed to allow your Rails application to reside behind a reverse proxy. 
@@ -21,14 +21,25 @@
 #
 #       ruby script/plugin install http://svn.napcsweb.com/public/reverse_proxy_fix
 #
-# You should be prompted to enter the base url of your front-end server when you install the plugin via script/plugin install.  You
-# should not include the trainling slash! For example:
+# You will be prompted by the script to specify the version of Rails you're using. Select 
+# the version that best matches your version of Rails and press the Enter key.
+
+# You should be prompted to enter the base url of your front-end server when you install 
+# the plugin via script/plugin install.  You should not include the trailing slash! For
+# example:
 # 
 #       http://www.mydomain.com/typo
 #
-# If that doesn't work for some reason, you can run the install.rb script in vendor/plugins/reverse_proxy_fix. Or you can manually
-# edit the file lib/config.rb and uncomment the BASE_URL line. (It should be the only line in the file. Enter the desired base url 
+# If that doesn't work for some reason, you can run the install.rb script in
+#
+#    vendor/plugins/reverse_proxy_fix. 
+#
+# Or you can manually edit the file lib/config.rb and uncomment the BASE_URL line. (It should be the only line in the file. Enter the desired base url 
 # that you would like the plugin to prepend to any generated URLs.
+#
+#== Running In Production
+#
+# This plugin only operates in production mode.  
 #
 #==Versions of Rails
 #
@@ -46,11 +57,14 @@
 #
 #= Limitations
 #
-# First, asset hosts are disabled and overruled by this plugin. Your asset host base URL is set to the base url you specify. Modify the plugin to change this behavior. I am open to patches for this.
+# First, asset hosts are disabled and overruled by this plugin. Your asset host base URL is set to the base url you specify. Modify the plugin to change this behavior. I am open to patches for this, and am also looking at better solutions. 
 #
-# Second, in order to get named routes working in Rails 2.0 I took the shortcut and disabled route optimization.
+# Second, in order to get named routes working in Rails 2.0 I took the shortcut and disabled route optimization. This is suboptimal, and am looking for patches from users.
 #
 #= Revisions
+#
+#== Version 1.0.5.2
+# * Updated install script to specify that this does in fact work with Rails 2.1 and 2.2.
 #
 #== Version 1.0.5.1
 # * Updated the readme version and fixed the installation script so it worked for platforms other than Windows (Thanks to Brian Candler for catching this and supplying a patch)
@@ -87,7 +101,7 @@
 # * Initial Release
 #
 #==License
-# Copyright © 2006-2007 Brian Hogan
+# Copyright © 2006-2009 Brian Hogan
 # 
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
