@@ -4,7 +4,7 @@
 # by the plugin.
 require 'fileutils'
 puts "########################################################"
-puts "# reverse_proxy_fix plugin - v1.0.5.2                             #"
+puts "# reverse_proxy_fix plugin - v1.0.6.0                  #"
 puts "# Configureation                                       #"
 puts "########################################################"
 puts ""
