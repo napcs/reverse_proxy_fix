@@ -1,4 +1,4 @@
-#=REVERSE PROXY PLUGIN Version 1.0.5.1 (March 25th, 2008)
+#=REVERSE PROXY PLUGIN Version 1.0.6.0 (March 16th, 2009)
 #===© 2006-2009 Brian Hogan
 # 
 #==Introduction
@@ -62,6 +62,10 @@
 # Second, in order to get named routes working in Rails 2.0 I took the shortcut and disabled route optimization. This is suboptimal, and am looking for patches from users.
 #
 #= Revisions
+#
+#== Version 1.0.6.0
+#
+# * Added support for Rails 2.3
 #
 #== Version 1.0.5.2
 # * Updated install script to specify that this does in fact work with Rails 2.1 and 2.2.

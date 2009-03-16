@@ -17,6 +17,7 @@ puts "Please select your Rails version from the list of supported versions:"
 puts " 1 : Rails 1.1.6"
 puts " 2 : Rails 1.2.X"
 puts " 3 : Rails 2.0, 2.1, 2.2"
+puts " 4 : Rails 2.3.x"
 version = STDIN.gets.chop!.to_i
 
 d = Dir.getwd
