@@ -2,9 +2,9 @@
 # Prompts users for the desired source base path
 # and writes the path to the configuration file used
 # by the plugin.
-require 'FileUtils'
+require 'fileutils'
 puts "########################################################"
-puts "# reverse_proxy_fix plugin                             #"
+puts "# reverse_proxy_fix plugin - v1.0.6.0                  #"
 puts "# Configureation                                       #"
 puts "########################################################"
 puts ""
@@ -16,7 +16,8 @@ base_url.chop!
 puts "Please select your Rails version from the list of supported versions:"
 puts " 1 : Rails 1.1.6"
 puts " 2 : Rails 1.2.X"
-puts " 3 : Rails 2.0"
+puts " 3 : Rails 2.0, 2.1, 2.2"
+puts " 4 : Rails 2.3.x"
 version = STDIN.gets.chop!.to_i
 
 d = Dir.getwd
@@ -45,6 +46,8 @@ elsif version == 2
    version = "123"
 elsif version == 3
    version = "20"
+elsif version == 4
+   version = "23"
 else
    version = "123"
 end
