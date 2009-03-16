@@ -32,7 +32,7 @@
 #
 # If that doesn't work for some reason, you can run the install.rb script in
 #
-#    vendor/plugins/reverse_proxy_fix. 
+#    vendor/plugins/reverse_proxy_fix
 #
 # Or you can manually edit the file lib/config.rb and uncomment the BASE_URL line. (It should be the only line in the file. Enter the desired base url 
 # that you would like the plugin to prepend to any generated URLs.
@@ -48,7 +48,8 @@
 # simply rename the appropriate file to reverse_proxy_fix.rb
 # * 116.rb  (Rails 1.1.6 or below)
 # * 123.rb  (Rails 1.2.X)
-# * 20.rb   (Rails 2.X)
+# * 20.rb   (Rails 2.0-2.2)
+# * 23.rb   (Rails 2.3.x)
 #
 # Then start your application in Production mode.  The plugin is automatically disabled when you run in development mode, so you don't
 # need to do any special configurations to develop your application.
