@@ -7,13 +7,16 @@ module ActionController
     Object.const_defined? 'BASE_URL'
   end
   
-  if check_mode_and_base
-    # Set the asset host for CSS, JS, and image files if we're in production mode and the base_path has been configured.
-    ActionController::Base.asset_host = BASE_URL
-    # disable optimizations - we need all URLS to be run through routing for this to work.
-    ActionController::Base::optimise_named_routes = false
+  def self.reset_asset_host_and_route_optimization
+    if check_mode_and_base
+      # Set the asset host for CSS, JS, and image files if we're in production mode and the base_path has been configured.
+      ActionController::Base.asset_host = BASE_URL
+      # disable optimizations - we need all URLS to be run through routing for this to work.
+      ActionController::Base::optimise_named_routes = false
+    end
   end
   
+  reset_asset_host_and_route_optimization
   
   # Overriding the base UrlRewriter classes to get rewrite_url to always prepend the BASE_URL specified
   # in the config file
