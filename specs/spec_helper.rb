@@ -1,7 +1,7 @@
 begin
   require File.dirname(__FILE__) + '/../../../../spec/spec_helper'
 rescue LoadError
-  RAILS_ENV="test"
+  RAILS_ENV = "test"
   require 'rubygems'
   gem 'actionpack', "=2.3.2"
   gem 'rspec'
@@ -12,6 +12,9 @@ rescue LoadError
   #require 'spec/rails'
 end
 
+include ActionController::UrlWriter
+
 plugin_spec_dir = File.dirname(__FILE__)
 ActionController::Base.logger = Logger.new(plugin_spec_dir + "/debug.log")
 
+BASE_URL = "http://www.foo.com/bar"
