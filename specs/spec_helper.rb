@@ -13,8 +13,8 @@ rescue LoadError
 end
 
 include ActionController::UrlWriter
+ActionController::Routing::Routes.reload rescue nil
 
 plugin_spec_dir = File.dirname(__FILE__)
 ActionController::Base.logger = Logger.new(plugin_spec_dir + "/debug.log")
 
-BASE_URL = "http://www.foo.com/bar"

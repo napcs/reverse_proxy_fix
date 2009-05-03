@@ -31,9 +31,7 @@ module ActionController
       options = self.class.default_url_options.merge(options)
       base_url_with_authentication = BASE_URL.gsub("://", "://#{rewrite_authentication(options)}")
       
-      [:user, :password, :port, :host, :protocol].each { |k| options.delete(k) }
-      
-      url = rewrite_url_without_reverse_proxy_fix(options)
+      url = rewrite_url_without_reverse_proxy_fix(options.except(:user, :password, :port, :host, :protocol))
       unless options[:skip_relative_url_root]
         url = url.gsub(@request.protocol + @request.host_with_port, '')
         url = base_url_with_authentication + url unless options[:only_path]
@@ -50,10 +48,9 @@ module ActionController
     # always include the full front-facing path. This also breaks route recognition, so this is addressed in ActionController::Routing::RouteSet::recognize_path
     def request_uri_with_reverse_proxy_fix
       uri = request_uri_without_reverse_proxy_fix
-      if ActionController::check_mode_and_base
-        uri = BASE_URL + uri unless uri.include?(BASE_URL)
-      end
-      uri
+      return uri unless ActionController::check_mode_and_base 
+      
+      BASE_URL + uri unless uri.include?(BASE_URL)
     end
     alias_method_chain :request_uri,  :reverse_proxy_fix
   end
@@ -64,6 +61,8 @@ module ActionController
       # This method simply removes the BASE_URL if it's found and then passes it on to the original
       # recognize_path method.
       def recognize_path_with_reverse_proxy_fix(path, environment={})
+        return recognize_path_without_reverse_proxy_fix(path, environment) unless ActionController::check_mode_and_base
+        
         path = CGI.unescape(path)
         path = path.gsub(BASE_URL, "") if ActionController::check_mode_and_base
         recognize_path_without_reverse_proxy_fix(path, environment)
