@@ -1,11 +1,10 @@
 # Reverse proxy fix for Rails 2.3
-# Fixes for the renamig of abstract_request to request
 module ActionController
-    
+
   protected
   # Don't rewrite any urls unless BASE_URL has been set 
   def self.check_mode_and_base
-    BASE_URL.any?
+    Object.const_defined? 'BASE_URL'
   end
   
   if check_mode_and_base
@@ -22,20 +21,24 @@ module ActionController
     # Prepends the BASE_URL to all of the URL requests created by the 
     # URL rewriter in Rails. This includes url_for, link_to, and route generation.
     # Route recognition is handled in recognize_path which is modified as well.
+    # +:host+, +:port+, and +:protocol+ options will be ignored. 
     def rewrite_url_with_reverse_proxy_fix(options)
+      return rewrite_url_without_reverse_proxy_fix(options) unless ActionController::check_mode_and_base 
+      
+      options = self.class.default_url_options.merge(options)
+      base_url_with_authentication = BASE_URL.gsub("://", "://#{rewrite_authentication(options)}")
+      
+      [:user, :password, :port, :host, :protocol].each { |k| options.delete(k) }
+      
       url = rewrite_url_without_reverse_proxy_fix(options)
-      if ActionController::check_mode_and_base
-        unless options[:skip_relative_url_root]
-          
-          url = url.gsub(@request.protocol + @request.host_with_port, '')
-          url = BASE_URL + url
-        end
+      unless options[:skip_relative_url_root]
+        url = url.gsub(@request.protocol + @request.host_with_port, '')
+        url = base_url_with_authentication + url unless options[:only_path]
       end
       url
     end
     alias_method_chain :rewrite_url,  :reverse_proxy_fix
   end
-  
   
   # Need to modify the request slightly
   class Request
