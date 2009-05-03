@@ -23,7 +23,7 @@ module ActionController
     # URL rewriter in Rails. This includes url_for, link_to, and route generation.
     # Route recognition is handled in recognize_path which is modified as well.
     def rewrite_url_with_reverse_proxy_fix(options)
-      url = old_rewrite_url(options)
+      url = rewrite_url_without_reverse_proxy_fix(options)
       if ActionController::check_mode_and_base
         unless options[:skip_relative_url_root]
           
@@ -43,7 +43,7 @@ module ActionController
     # redirect_to(request_uri) then you may get unexpected results. This method overwrites request_uri to
     # always include the full front-facing path. This also breaks route recognition, so this is addressed in ActionController::Routing::RouteSet::recognize_path
     def request_uri_with_reverse_proxy_fix
-      uri = old_request_uri
+      uri = request_uri_without_reverse_proxy_fix
       if ActionController::check_mode_and_base
         uri = BASE_URL + uri unless uri.include?(BASE_URL)
       end
@@ -60,7 +60,7 @@ module ActionController
       def recognize_path_with_reverse_proxy_fix(path, environment={})
         path = CGI.unescape(path)
         path = path.gsub(BASE_URL, "") if ActionController::check_mode_and_base
-        old_recognize_path(path, environment)
+        recognize_path_without_reverse_proxy_fix(path, environment)
       end
       alias_method_chain :recognize_path,  :reverse_proxy_fix
     end
