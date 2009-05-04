@@ -1,4 +1,9 @@
 # Reverse proxy fix for Rails 2.3
+#
+# TODO: allow BASE_URL to be String or Hash of host, protocol, port, and path. This will be more robust and flexible.
+# TODO: remove request_uri and route recognition hacks
+#
+#
 module ActionController
 
   protected
@@ -12,6 +17,7 @@ module ActionController
       # Set the asset host for CSS, JS, and image files if we're in production mode and the base_path has been configured.
       ActionController::Base.asset_host = BASE_URL
       # disable optimizations - we need all URLS to be run through routing for this to work.
+      # QUESTION: tests pass on RoR 2.3.2 with optimized_named_routes enabled, but leaving this here for legacy
       ActionController::Base::optimise_named_routes = false
     end
   end
@@ -41,18 +47,31 @@ module ActionController
     alias_method_chain :rewrite_url,  :reverse_proxy_fix
   end
   
-  # Need to modify the request slightly
   class Request
     # Request_uri usually returns the path relative to the root of the application. However, if you try to do
     # redirect_to(request_uri) then you may get unexpected results. This method overwrites request_uri to
     # always include the full front-facing path. This also breaks route recognition, so this is addressed in ActionController::Routing::RouteSet::recognize_path
+    #
+    # QUESTION: But why use redirect_to(request.request_uri) over redirect_to(request.url)?
+    #
     def request_uri_with_reverse_proxy_fix
       uri = request_uri_without_reverse_proxy_fix
       return uri unless ActionController::check_mode_and_base 
-      
       BASE_URL + uri unless uri.include?(BASE_URL)
     end
     alias_method_chain :request_uri,  :reverse_proxy_fix
+    
+    def path_with_reverse_proxy_fix
+      path = path_without_reverse_proxy_fix
+      return path unless ActionController::check_mode_and_base 
+      path.gsub(BASE_URL, '')
+    end
+    alias_method_chain :path, :reverse_proxy_fix
+    
+    def url_with_reverse_proxy_fix
+      ActionController::check_mode_and_base ? request_uri : url_without_reverse_proxy_fix
+    end
+    alias_method_chain :url, :reverse_proxy_fix
   end
 
   module Routing
