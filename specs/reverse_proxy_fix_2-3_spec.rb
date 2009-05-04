@@ -17,9 +17,9 @@ describe "when BASE_URL is set" do
     ActionController::Base.asset_host.should eql(BASE_URL)
   end
   
-  #it "should deactivate optimised routes" do
-  #  ActionController::Base::optimise_named_routes.should be_false
-  #end
+  it "should deactivate optimised routes" do
+    ActionController::Base::optimise_named_routes.should be_false
+  end
   
   context "url writing and rewriting" do
     before(:each) do

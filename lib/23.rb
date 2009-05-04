@@ -3,7 +3,6 @@
 # TODO: allow BASE_URL to be String or Hash of host, protocol, port, and path. This will be more robust and flexible.
 # TODO: remove request_uri and route recognition hacks
 #
-#
 module ActionController
 
   protected
